@@ -3,6 +3,7 @@ ini_set("display_errors", 1);
 error_reporting(E_ALL);
 
 require_once './funcs.php';
+$stores = getStores();
 $title = 'ポジウマ';
 ?>
 
@@ -21,11 +22,10 @@ $title = 'ポジウマ';
 <body>
     <div id="map" class="w-full h-screen"></div>
 
-    
-
     <script src="./map/maps.js"></script>
     <script type="module">
         import { GOOGLE_MAPS_API_KEY } from './key.js';
+        import { initMap } from './funcs.js';
 
         // Google Maps APIのスクリプトタグを動的に生成
         const googleMapsScript = document.createElement('script');
@@ -36,12 +36,10 @@ $title = 'ポジウマ';
 
         // Google Maps APIのスクリプトが読み込まれた後に呼び出される関数
         window.onGoogleScriptLoad = function() {
-            initMap();
-            initAutocomplete();
-            initPostAutocomplete();
+            const stores = <?php echo json_encode($stores); ?>;
+            initMap(stores);
         };
     </script>
-
 
     <?php include './inc/footer.php'; ?>
 </body>
