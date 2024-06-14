@@ -5,11 +5,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../css/output.css?<?= time() ?>">
-  <link href="../colorbox/example3/colorbox.css" rel="stylesheet">
+  <link href="./colorbox/example3/colorbox.css" rel="stylesheet">
 
   <!-- ▼jQueryとColorboxのスクリプトを読み込む記述 -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="../colorbox/jquery.colorbox-min.js"></script>
+  <script src="./colorbox/jquery.colorbox-min.js"></script>
 
   <script src="https://kit.fontawesome.com/17c882a708.js" crossorigin="anonymous"></script>
 </head>
@@ -24,7 +24,7 @@
       <span>マップ</span>
     </a>
 
-    <a href="../post/" class="iframe flex flex-col items-center gap-1 text-gray-800 transition duration-100 hover:text-gray-500 active:text-gray-800">
+    <a href="./post/" class="iframe flex flex-col items-center gap-1 text-gray-800 transition duration-100 hover:text-gray-500 active:text-gray-800">
       <i class="far fa-plus-square fa-2x"></i>
       <span>投稿</span>
     </a>
@@ -45,7 +45,24 @@
 <!-- ▼Colorboxの適用対象の指定とオプションの記述 -->
 <script>
    $(document).ready(function(){
-      $(".iframe").colorbox({iframe:true, width:"40%", height:"80%", speed:200, opacity:0.7});
+      $(".iframe").colorbox({
+         iframe: true,
+         width: "33%",
+         height: "80%",
+         speed: 200,
+         opacity: 0.7,
+         onClosed: function() {
+            // 投稿完了時にColorboxを閉じる
+            window.parent.$.colorbox.close();
+         }
+      });
+
+      // 投稿完了イベントをリスンする
+      window.addEventListener('message', function(event) {
+         if (event.data === 'postComplete') {
+            $.colorbox.close();
+         }
+      });
    });
 </script>
 

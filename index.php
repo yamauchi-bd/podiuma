@@ -22,6 +22,8 @@ $title = 'ポジウマ';
 <body>
     <div id="map" class="w-full h-screen"></div>
 
+    <?php include './footer.php'; ?>
+
     <script src="./map/maps.js"></script>
     <script type="module">
         import { GOOGLE_MAPS_API_KEY } from './key.js';
@@ -32,7 +34,7 @@ $title = 'ポジウマ';
         googleMapsScript.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}&libraries=places&callback=onGoogleScriptLoad`;
         googleMapsScript.async = true;
         googleMapsScript.defer = true;
-        document.head.appendChild(googleMapsScript);
+        document.body.appendChild(googleMapsScript);
 
         // Google Maps APIのスクリプトが読み込まれた後に呼び出される関数
         window.onGoogleScriptLoad = function() {
@@ -40,8 +42,6 @@ $title = 'ポジウマ';
             initMap(stores);
         };
     </script>
-
-    <?php include './inc/footer.php'; ?>
 </body>
 
 </html>

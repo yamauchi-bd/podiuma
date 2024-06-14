@@ -63,14 +63,20 @@ export function initMap(stores) {
                         });
 
                         var infowindow = new google.maps.InfoWindow({
-                            content: '<div><strong>' + store.storeName + '</strong><br>' +
-                                     '住所: ' + store.storeAddress + '<br>' +
-                                     'URL: <a href="' + store.storeUrl + '">' + store.storeUrl + '</a><br>' +
-                                     'ジャンル: ' + store.storeGenre + '<br>' +
-                                     'シーン: ' + store.storeScene + '<br>' +
-                                     '予算: ' + store.storeBudget + '<br>' +
-                                     '印象: ' + store.storeImpression + '<br>' +
-                                     '<img src="storeImage/' + store.storeImage + '" alt="店舗画��" style="width:100px;"></div>'
+                            content: `
+                    <div style="font-family: Arial, sans-serif; font-size: 14px;">
+                        <h2 style="margin: 0; color: #333;">${store.storeName}</h2>
+                        <p style="margin: 5px 0;">
+                            <strong>住所:</strong> ${store.storeAddress}<br>
+                            <strong>URL:</strong> <a href="${store.storeUrl}" target="_blank">${store.storeUrl}</a><br>
+                            <strong>ジャンル:</strong> ${store.storeGenre}<br>
+                            <strong>シーン:</strong> ${store.storeScene}<br>
+                            <strong>予算:</strong> ${store.storeBudget}<br>
+                            <strong>印象:</strong> ${store.storeImpression}
+                        </p>
+                        <img src="post/storeImage/${store.storeImage}" alt="店舗画像" style="width:100px; border-radius: 8px;">
+                    </div>
+                `
                         });
 
                         marker.addListener('click', function() {
