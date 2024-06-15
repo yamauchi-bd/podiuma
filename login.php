@@ -4,8 +4,7 @@ session_start();
 ini_set("display_errors", 1);
 error_reporting(E_ALL);
 
-require_once '../funcs.php';
-$stores = getStores();
+require_once 'funcs.php';
 $title = 'ポジウマ';
 ?>
 
@@ -15,7 +14,7 @@ $title = 'ポジウマ';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/output.css?<?= time() ?>">
+    <link rel="stylesheet" href="css/output.css?<?= time() ?>">
     <script src="https://kit.fontawesome.com/17c882a708.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title><?php echo $title; ?></title>
@@ -57,7 +56,7 @@ $title = 'ポジウマ';
                     </div>
 
                     <div class="flex items-center justify-center bg-gray-100 p-4 rounded-b-lg">
-                        <p class="text-center text-sm text-gray-500">アカウントをお持ちではありませんか？ <a href="../register/" class="text-indigo-500 transition duration-100 hover:text-indigo-600 active:text-indigo-700">新規登録</a></p>
+                        <p class="text-center text-sm text-gray-500">アカウントをお持ちではありませんか？ <a href="register.php" class="text-indigo-500 transition duration-100 hover:text-indigo-600 active:text-indigo-700">新規登録</a></p>
                     </div>
                 </form>
             </div>

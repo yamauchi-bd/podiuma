@@ -4,8 +4,7 @@ error_reporting(E_ALL);
 
 //最初にSESSIONを開始！！ココ大事！！
 session_start();
-include("../funcs.php");
-sschk();
+include("funcs.php");
 
 //1. POSTデータ取得
 $email            = $_POST["email"];
@@ -24,7 +23,7 @@ if($status==1 || $status==2){
 //2. DB接続します
 $pdo = db_conn();
 
-//3. メールアドレスの重複チェック
+// //3. メールアドレスの重複チェック
 $sql = "SELECT COUNT(*) FROM user_table WHERE email = :email";
 $stmt = $pdo->prepare($sql);
 $stmt->bindValue(':email', $email, PDO::PARAM_STR);
@@ -34,7 +33,7 @@ $count = $stmt->fetchColumn();
 if ($count > 0) {
     // メールアドレスが既に存在する場合
     $_SESSION['error'] = '※このメールアドレスは既に登録されています';
-    header('Location: index.php');
+    header('Location: register.php');
     exit();
 }
 
@@ -47,14 +46,11 @@ $stmt->bindValue(':username', $username, PDO::PARAM_STR); //Integer（数値の�
 $stmt->bindValue(':profileImage', $img, PDO::PARAM_STR); //Integer（数値の場合 PDO::PARAM_INT)
 $status = $stmt->execute();
 
-//5．データ登録処理後
-// if ($status == false) {
-//     sql_error($stmt);
-// } else {
-//     redirect("../login");
-// }
+// 5．データ登録処理後
+if ($status == false) {
+    sql_error($stmt);
+} else {
+    redirect("login.php");
+}
 
 ?>
-
-<img src="profileImage/<?php echo $img; ?>" alt="">
-

@@ -2,7 +2,9 @@
 ini_set("display_errors", 1);
 error_reporting(E_ALL);
 
-include("../funcs.php");
+session_start();
+include("funcs.php");
+sschk();
 ?>
 
 <!DOCTYPE html>
@@ -11,13 +13,13 @@ include("../funcs.php");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/output.css?<?= time() ?>">
+    <link rel="stylesheet" href="css/output.css?<?= time() ?>">
     
     <script src="https://kit.fontawesome.com/17c882a708.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="module">
-        import { GOOGLE_MAPS_API_KEY } from '../key.js';
-        import { initPostAutocomplete, fillInAddress } from '../funcs.js';
+        import { GOOGLE_MAPS_API_KEY } from './key.js';
+        import { initPostAutocomplete, fillInAddress } from './funcs.js';
 
         const googleMapsScript = document.createElement('script');
         googleMapsScript.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}&libraries=places`;
@@ -36,6 +38,7 @@ include("../funcs.php");
         <!-- 投稿画面 -->
 <div class="fixed inset-0 bg-black bg-opacity-50 z-100">
     <form action="postExec.php" method="post" enctype="multipart/form-data" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-11/12 sm:w-4/5 md:w-3/5 lg:w-2/5 max-w-md bg-white bg-opacity-70 p-5 rounded-lg shadow-lg flex flex-col justify-between" onsubmit="postComplete()">
+        <input type="hidden" name="userId"">
         <input name="storeName"    id="storeName"    type="text" placeholder="店舗名" required class="border border-gray-300 rounded-md p-2 mb-2 text-lg">
         <input name="storeAddress" id="storeAddress" type="text" placeholder="住所"  required  class="border border-gray-300 rounded-md p-2 mb-2 text-lg">
         <input name="storeUrl"     id="storeUrl"     type="text" placeholder="URL"            class="border border-gray-300 rounded-md p-2 mb-2 text-lg">

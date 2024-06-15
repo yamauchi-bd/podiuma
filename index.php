@@ -2,7 +2,8 @@
 ini_set("display_errors", 1);
 error_reporting(E_ALL);
 
-require_once './funcs.php';
+include 'funcs.php';
+
 $stores = getStores();
 $title = 'ポジウマ';
 ?>
@@ -13,7 +14,7 @@ $title = 'ポジウマ';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/output.css?<?= time() ?>">
+    <link rel="stylesheet" href="css/output.css?<?= time() ?>">
     <script src="https://kit.fontawesome.com/17c882a708.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title><?php echo $title; ?></title>
@@ -22,9 +23,9 @@ $title = 'ポジウマ';
 <body>
     <div id="map" class="w-full h-screen"></div>
 
-    <?php include './footer.php'; ?>
+    <?php include 'footer.php'; ?>
 
-    <script src="./map/maps.js"></script>
+    <script src="maps.js"></script>
     <script type="module">
         import { GOOGLE_MAPS_API_KEY } from './key.js';
         import { initMap } from './funcs.js';

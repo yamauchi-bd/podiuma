@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 session_start();
 
 //1.  DB接続します
-include("../funcs.php");
+include("funcs.php");
 $pdo = db_conn();
 
 //2. データ登録SQL作成
@@ -21,19 +21,20 @@ if($status==false){
 }
 
 //4. 抽出データ数を取得
-$val = $stmt->fetch();         //1レコードだけ取得する方法
+$val = $stmt->fetch(); //1レコードだけ取得する方法
 //$count = $stmt->fetchColumn(); //SELECT COUNT(*)で使用可能()
 
 //5. 該当レコードがあればSESSIONに値を代入
 if( password_verify($_POST["password"] ,$val["password"])){
   //Login成功時
   $_SESSION["chk_ssid"]  = session_id();
-  $_SESSION["username"]      = $val['username'];
-  redirect("../index.php");
+  $_SESSION["username"]  = $val['username'];
+  $_SESSION["id"]   = $val['id']; // ユーザーIDをセッションに保存
+  redirect("userpage.php");
 }else{
   //Login失敗時(Logout経由)
   $_SESSION['error'] = '※メールアドレスまたはパスワードが違います。';
-  redirect("index.php");
+  redirect("login.php");
 }
 exit();
 ?>

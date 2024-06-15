@@ -74,7 +74,7 @@ export function initMap(stores) {
                             <strong>予算:</strong> ${store.storeBudget}<br>
                             <strong>印象:</strong> ${store.storeImpression}
                         </p>
-                        <img src="post/storeImage/${store.storeImage}" alt="店舗画像" style="width:100px; border-radius: 8px;">
+                        <img src="storeImage/${store.storeImage}" alt="店舗画像" style="width:100px; border-radius: 8px;">
                     </div>
                 `
                         });
