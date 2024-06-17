@@ -4,6 +4,7 @@ error_reporting(E_ALL);
 
 session_start();
 include("funcs.php");
+
 sschk();
 $pdo = db_conn();
 $title = 'ポジウマ';
@@ -57,11 +58,11 @@ $json = json_encode($posts, JSON_UNESCAPED_UNICODE);
             </div>
 
             <div id="postContainer" class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-6 xl:gap-8">
-                <?php foreach ($posts as $index => $post) : ?>
+                <?php foreach ($posts as $post) : ?>
                     <div class="post">
                         <!-- image - start -->
-                        <a href="#" class="group relative flex h-48 items-end justify-end overflow-hidden rounded-lg bg-gray-100 shadow-lg md:h-96 <?php echo $index >= 9 ? 'hidden' : ''; ?>">
-                            <img src="storeImage/<?php echo htmlspecialchars($post['storeImage']); ?>" loading="lazy" alt="ファイル名" class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
+                        <a href="#" data-id="<?php echo htmlspecialchars($post['id']); ?>" class="group relative flex h-48 items-end justify-end overflow-hidden rounded-lg bg-gray-100 shadow-lg md:h-96 <?php echo $index >= 9 ? 'hidden' : ''; ?>">
+                            <img src="storeImage/<?php echo htmlspecialchars($post['storeImage']); ?>" data-post-id="<?= $post['id']; ?>" loading="lazy" alt="ファイル名" class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
                             <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50"></div>
                             <span class="absolute top-3 left-3 m-3 inline-block rounded-lg border border-gray-500 px-2 py-1 text-xs text-gray-200 backdrop-blur md:px-3 md:text-sm"><?php echo htmlspecialchars($post['storeName']); ?></span>
                         </a>
@@ -91,9 +92,16 @@ $json = json_encode($posts, JSON_UNESCAPED_UNICODE);
             }
         });
     </script>
+
+<div id="postDetails" style="display: none;">
+    <!-- Ajaxで取得した投稿の詳細が表示 -->
+  </div>
+
     <div class="footer">
         <?php include 'footer.php'; ?>
     </div>
+
+    <script src="postDetailsGet.js"></script>
 </body>
 
 </html>

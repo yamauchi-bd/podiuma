@@ -9,7 +9,7 @@ $(document).ready(function() {
         }
 
         $.ajax({
-            url: 'postDetailsGet.php', // APIのURL
+            url:  'postDetailsGet.php', // APIのURL
             type: 'POST',
             data: {
                 postId: postId          
@@ -18,45 +18,43 @@ $(document).ready(function() {
             success: function(data) {
                 console.log('Response data:', data); // レスポンスデータをログに出力
 
-                if (data.error) {
-                    alert(data.error);
-                    return;
-                }
-
                 // 成功時の処理
                 $('#postDetails').html(
-                    '<p>店舗名: ' + data.storeName + '</p>' +
-                    '<p>住所: ' + data.storeAddress + '</p>' +
-                    '<p>URL: ' + data.storeUrl + '</p>' +
-                    '<p>ジャンル: ' + data.storeGenre + '</p>' +
-                    '<p>シーン: ' + data.storeScene + '</p>' +
-                    '<p>予算: ' + data.storeBudget + '</p>' +
-                    '<p>おすすめ: ' + data.storeImpression + '</p>'
+                    '<div class="p-6 bg-white rounded-lg shadow-lg">' +
+                    '<h2 class="text-2xl font-bold mb-4">' + data.storeName + '</h2>' +
+                    '<p><strong>住所:</strong> ' + data.storeAddress + '</p>' +
+                    '<p><strong>URL:</strong> <a href="' + data.storeUrl + '" class="text-blue-500 underline">' + data.storeUrl + '</a></p>' +
+                    '<p><strong>ジャンル:</strong> ' + data.storeGenre + '</p>' +
+                    '<p><strong>シーン:</strong> ' + data.storeScene + '</p>' +
+                    '<p><strong>予算:</strong> ' + data.storeBudget + '</p>' +
+                    '<p><strong>おすすめ:</strong> ' + data.storeImpression + '</p>' +
+                    '<button id="closeModal" class="mt-4 px-4 py-2 bg-orange-500 text-white rounded">閉じる</button>' +
+                    '</div>'
                 );
                 $('#postDetails').css({
-                    'display': 'block',
-                    'width': '500px',
-                    'height': '350px',
-                    'color': '#000',
-                    'background-color': '#fff',
-                    'padding': '10px',
-                    'border-radius': '10px',
-                    'box-shadow': '0 0 10px rgba(0, 0, 0, 0.5)'
+                    'display': 'flex',
+                    'justify-content': 'center',
+                    'align-items': 'center',
+                    'position': 'fixed',
+                    'top': '0',
+                    'left': '0',
+                    'width': '100%',
+                    'height': '100%',
+                    'background-color': 'rgba(0, 0, 0, 0.5)',
+                    'z-index': '1000'
                 });
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                console.error('AJAX Error:', textStatus, errorThrown); // エラー詳細をログに出力
-                console.error('Response text:', jqXHR.responseText); // レスポンステキストをログに出力
-                alert('情報の取得に失敗しました。');
+
+                $('#closeModal').click(function() {
+                    $('#postDetails').hide();
+                });
             }
         });
     });
 
     // モーダル外をクリックで閉じる
     $(window).click(function(e) {
-        if (!$(e.target).closest('#postDetails').length) {
+        if (!$(e.target).closest('#postDetails > div').length) {
             $('#postDetails').hide();
         }
     });
 });
-

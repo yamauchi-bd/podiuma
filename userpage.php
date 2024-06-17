@@ -4,7 +4,6 @@ error_reporting(E_ALL);
 
 session_start();
 include("funcs.php");
-include("postDetailsGet.php");
 
 sschk();
 $pdo = db_conn();
@@ -64,9 +63,8 @@ $json = json_encode($posts, JSON_UNESCAPED_UNICODE);
           <div class="post">
             <!-- image - start -->
             <a href="#" data-id="<?php echo htmlspecialchars($post['id']); ?>" class="group relative flex h-48 items-end justify-end overflow-hidden rounded-lg bg-gray-100 shadow-lg md:h-96">
-              <img src="storeImage/<?php echo htmlspecialchars($post['storeImage']); ?>"  data-post-id="<?=$post['id']; ?>" loading="lazy" alt="" class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
+              <img src="storeImage/<?php echo htmlspecialchars($post['storeImage']); ?>" data-post-id="<?= $post['id']; ?>" loading="lazy" alt="" class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
               <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50"></div>
-
               <span class="absolute top-3 left-3 m-3 inline-block rounded-lg border border-gray-500 px-2 py-1 text-xs text-gray-200 backdrop-blur md:px-3 md:text-sm"><?php echo htmlspecialchars($post['storeName']); ?></span>
               <!-- <span onclick="location.href='postEdit.php?id=<?php echo $post['id']; ?>'" class="cursor-pointer relative mr-3 mb-3 inline-block rounded-lg border border-gray-500 px-2 py-1 text-xs text-gray-200 backdrop-blur md:px-3 md:text-sm"><?php echo htmlspecialchars("更新"); ?></span> -->
               <span onclick="if(confirm('本当に削除しますか？')) location.href='postDelete.php?id=<?php echo $post['id']; ?>'" class="cursor-pointer relative mr-3 mb-3 inline-block rounded-lg border border-gray-500 px-2 py-1 text-xs text-gray-200 backdrop-blur md:px-3 md:text-sm"><?php echo htmlspecialchars("削除"); ?></span>
@@ -78,7 +76,9 @@ $json = json_encode($posts, JSON_UNESCAPED_UNICODE);
     </div>
   </div>
 
-  <div id="postDetails" style="display: none;"></div>
+  <div id="postDetails" style="display: none;">
+    <!-- Ajaxで取得した投稿の詳細が表示 -->
+  </div>
 
   <div class="footer">
     <?php include 'footer.php'; ?>
