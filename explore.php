@@ -36,55 +36,64 @@ $json = json_encode($posts, JSON_UNESCAPED_UNICODE);
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title><?php echo $title; ?></title>
     <style>
-        .hidden { display: none; }
-        .footer { position: fixed; bottom: 0; width: 100%; }
+        .hidden {
+            display: none;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
     </style>
 </head>
 
 <body class="bg-custom-bg bg-cover bg-center">
-<div class="bg-white w-full full-height py-6 sm:py-8 lg:py-12 bg-opacity-90">
-  <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
-    
-    <div class="mb-2 md:mb-4">
-    <!-- 検索バー -->
+    <div class="bg-white w-full full-height py-6 sm:py-8 lg:py-12 bg-opacity-90">
+        <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
+
+            <div class="mb-2 md:mb-4">
+                <!-- 検索バー -->
+            </div>
+
+            <div id="postContainer" class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-6 xl:gap-8">
+                <?php foreach ($posts as $index => $post) : ?>
+                    <div class="post">
+                        <!-- image - start -->
+                        <a href="#" class="group relative flex h-48 items-end justify-end overflow-hidden rounded-lg bg-gray-100 shadow-lg md:h-96 <?php echo $index >= 9 ? 'hidden' : ''; ?>">
+                            <img src="storeImage/<?php echo htmlspecialchars($post['storeImage']); ?>" loading="lazy" alt="ファイル名" class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
+                            <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50"></div>
+                            <span class="absolute top-3 left-3 m-3 inline-block rounded-lg border border-gray-500 px-2 py-1 text-xs text-gray-200 backdrop-blur md:px-3 md:text-sm"><?php echo htmlspecialchars($post['storeName']); ?></span>
+                        </a>
+                        <!-- image - end -->
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
     </div>
 
-    <div id="postContainer" class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-6 xl:gap-8">
-      <?php foreach ($posts as $index => $post): ?>
-      <!-- image - start -->
-      <a href="#" class="group relative flex h-48 items-end justify-end overflow-hidden rounded-lg bg-gray-100 shadow-lg md:h-96 <?php echo $index >= 9 ? 'hidden' : ''; ?>">
-        <img src="storeImage/<?php echo htmlspecialchars($post['storeImage']); ?>" loading="lazy" alt="ファイル名" class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
-        <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50"></div>
+    <script>
+        let currentIndex = 9;
 
-        <span class="relative mr-3 mb-3 inline-block rounded-lg border border-gray-500 px-2 py-1 text-xs text-gray-200 backdrop-blur md:px-3 md:text-sm"><?php echo htmlspecialchars($post['storeName']); ?></span>
-      </a>
-      <!-- image - end -->
-      <?php endforeach; ?>
+        function loadMorePosts() {
+            const hiddenItems = document.querySelectorAll('.hidden');
+            hiddenItems.forEach((item, index) => {
+                if (index < 9) {
+                    item.classList.remove('hidden');
+                }
+            });
+            currentIndex += 9;
+        }
+
+        window.addEventListener('scroll', function() {
+            if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+                loadMorePosts();
+            }
+        });
+    </script>
+    <div class="footer">
+        <?php include 'footer.php'; ?>
     </div>
-  </div>
-</div>
-
-<script>
-  let currentIndex = 9;
-
-  function loadMorePosts() {
-    const hiddenItems = document.querySelectorAll('.hidden');
-    hiddenItems.forEach((item, index) => {
-      if (index < 9) {
-        item.classList.remove('hidden');
-      }
-    });
-    currentIndex += 9;
-  }
-
-  window.addEventListener('scroll', function() {
-    if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-      loadMorePosts();
-    }
-  });
-</script>
-<div class="footer">
-  <?php include 'footer.php'; ?>
-</div>
 </body>
+
 </html>

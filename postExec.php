@@ -24,8 +24,12 @@ $stmt->execute();
 $postCount = $stmt->fetchColumn();
 
 if ($postCount >= 3) {
-    // 投稿数が3件以上の場合、アラートメッセージを表示
-    echo "<script>alert('投稿は1ユーザーにつき3件までです。'); window.location.href = 'userpage.php';</script>";
+     // 出力バッファリングを開始
+     ob_start();
+     // 投稿数が3件以上の場合、アラートメッセージを表示
+     echo "<script>alert('投稿は1ユーザーにつき3件までです。'); window.history.back();</script>";
+     // 出力バッファをフラッシュして出力
+     ob_end_flush();
     exit();
 }
 
