@@ -56,7 +56,7 @@ $title = 'ポジウマ';
                     </div>
 
                     <div class="flex items-center justify-center bg-gray-100 p-4 rounded-b-lg">
-                        <p class="text-center text-sm text-gray-500">アカウントをお持ちではありませんか？ <a href="register.php" class="text-indigo-500 transition duration-100 hover:text-indigo-600 active:text-indigo-700">新規登録</a></p>
+                        <p class="text-center text-sm text-gray-500">アカウントをお持ちではありませんか？ <a href="userRegister.php" class="text-indigo-500 transition duration-100 hover:text-indigo-600 active:text-indigo-700">新規登録</a></p>
                     </div>
                 </form>
             </div>

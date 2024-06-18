@@ -19,7 +19,7 @@ sschk();
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="module">
         import { GOOGLE_MAPS_API_KEY } from './key.js';
-        import { initPostAutocomplete, fillInAddress } from './funcs.js';
+        import { initPostAutocomplete, fillInAddress } from './postFuncs.js';
 
         const googleMapsScript = document.createElement('script');
         googleMapsScript.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}&libraries=places`;

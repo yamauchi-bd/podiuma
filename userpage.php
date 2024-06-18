@@ -51,6 +51,18 @@ $json = json_encode($posts, JSON_UNESCAPED_UNICODE);
 <body class="bg-custom-bg bg-cover bg-center">
   <div class="bg-white w-full h-screen py-6 sm:py-8 lg:py-12 bg-opacity-90">
     <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
+      <!-- ハンバーガーメニュー - start -->
+       <div class="flex justify-end mb-4 relative">
+        <button id="menuButton" class="text-gray-800 focus:outline-none">
+          <i id="menuIcon" class="fas fa-bars fa-2x"></i>
+        </button>
+        <div id="menuDropdown" class="hidden absolute right-9 w-48 bg-white rounded-md shadow-lg z-20">
+          <!-- ログアウトボタン -->
+          <span onclick="if(confirm('本当にログアウトしますか？')) location.href='logout.php'" class="block px-4 py-2 text-gray-800 hover:text-gray-200">ログアウト</span>
+        </div>
+      </div>
+      <!-- ハンバーガーメニュー - end -->
+
       <!-- text - start -->
       <div class="mb-10 md:mb-16">
         <h2 class="mb-2 text-center text-xl font-bold text-gray-800 md:mb-1 lg:text-2xl"><?php echo $_SESSION["username"]; ?> さんの</h2>
@@ -84,6 +96,7 @@ $json = json_encode($posts, JSON_UNESCAPED_UNICODE);
     <?php include 'footer.php'; ?>
   </div>
 
+  <script src="menuIcon.js"></script>
   <script src="postDetailsGet.js"></script>
 </body>
 

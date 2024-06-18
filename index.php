@@ -25,10 +25,9 @@ $title = 'ポジウマ';
 
     <?php include 'footer.php'; ?>
 
-    <script src="maps.js"></script>
     <script type="module">
         import { GOOGLE_MAPS_API_KEY } from './key.js';
-        import { initMap } from './funcs.js';
+        import { initMap } from './mapFuncs.js';
 
         // Google Maps APIのスクリプトタグを動的に生成
         const googleMapsScript = document.createElement('script');

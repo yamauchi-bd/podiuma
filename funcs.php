@@ -25,18 +25,7 @@ if (!function_exists('db_conn')) {
     }
 }
 
-// さくらサーバーDB接続関数：db_conn()
-// function db_conn() {
-//     try {
-//         $db_name = "yamauchi-bd_no1map";    //データベース名
-//         $db_id   = "yamauchi-bd";      //アカウント名
-//         $db_pw   = "Vu5s98Lw";          //パスワード：XAMPPはパスワード無し or MAMPはパスワード"root"に修正してください。
-//         $db_host = "mysql57.yamauchi-bd.sakura.ne.jp"; //DBホスト
-//         return new PDO('mysql:dbname=' . $db_name . ';charset=utf8;host=' . $db_host, $db_id, $db_pw);
-//     } catch (PDOException $e) {
-//         exit('DB Connection Error:' . $e->getMessage());
-//     }
-// }
+
 
 // SQLエラー
 if (!function_exists('sql_error')) {

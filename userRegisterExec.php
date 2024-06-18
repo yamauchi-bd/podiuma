@@ -33,7 +33,7 @@ $count = $stmt->fetchColumn();
 if ($count > 0) {
     // メールアドレスが既に存在する場合
     $_SESSION['error'] = '※このメールアドレスは既に登録されています';
-    header('Location: register.php');
+    header('Location: userRegister.php');
     exit();
 }
 

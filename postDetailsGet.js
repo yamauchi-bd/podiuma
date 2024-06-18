@@ -28,6 +28,7 @@ $(document).ready(function() {
                     '<p><strong>シーン:</strong> ' + data.storeScene + '</p>' +
                     '<p><strong>予算:</strong> ' + data.storeBudget + '</p>' +
                     '<p><strong>おすすめ:</strong> ' + data.storeImpression + '</p>' +
+                    '<p><strong>投稿者:</strong> ' + data.userName + '</p>' +
                     '<button id="closeModal" class="mt-4 px-4 py-2 bg-orange-500 text-white rounded">閉じる</button>' +
                     '</div>'
                 );

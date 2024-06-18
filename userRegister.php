@@ -27,7 +27,7 @@ $title = 'ポジウマ';
             <div class="mx-auto max-w-screen-2xl max-h-1.5 px-4 md:px-8">
                 <h2 class="mt-10 text-center text-2xl font-bold text-white md:mb-8 lg:text-3xl">＼ユーザー登録／</h2>
 
-                <form method="post" action="registerExec.php" enctype="multipart/form-data" class="bg-white mx-auto max-w-lg rounded-lg border">
+                <form method="post" action="userRegisterExec.php" enctype="multipart/form-data" class="bg-white mx-auto max-w-lg rounded-lg border">
                     <div class="flex flex-col gap-4 p-4 md:p-8">
                         <div>
                             <label for="email" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">メールアドレス</label>
